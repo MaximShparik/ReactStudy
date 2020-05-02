@@ -1,0 +1,108 @@
+import {GetProfile,GetStatus,UpdateStatus} from '../api/api'
+
+
+const ADD_POST = 'ADD-POST'
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
+const SET_STATUS = 'SET-STATUS'
+// const UPDATE_STATUS ='UPDATE-STATUS'
+//
+const SET_USER_ID = 'SET-USER-ID'
+//
+let initialState = {
+  dataPostOld:[
+    {id:1, message:'Maxim'},
+    {id:2, message:'Stas'},
+    {id:3, message:'Kirill'},
+    {id:4, message:'Vanya'},
+    {id:5, message:'Scot'},
+    {id:6, message:'Tom'}
+  ],
+  profile: null,
+  status: '',
+  // id: 2
+};
+// начальные данные чтобы редакс мог запустить и отрендерить начальное состояние
+
+const profileReducer=(state=initialState,action)=> {
+  switch(action.type) {
+    case ADD_POST:
+      let NewOldPost = {
+        id: 5,
+        message: action.MyPostText,
+      };
+      return {
+        ...state,
+        dataPostOld: [...state.dataPostOld,NewOldPost],
+        dataNewPostText:''
+      }
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.profile
+      }
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status
+      }
+    // case UPDATE_STATUS:
+    //   return {
+    //     ...state,
+    //     status: action.status
+    //   }
+    //
+    case SET_USER_ID:
+      return {
+        ...state,
+        id: action.id
+      }
+      // debugger
+    //
+    default:
+      return state;
+  }
+}
+
+export const AddPost = (MyPostText) => {
+  return {
+    type: ADD_POST,
+    MyPostText:MyPostText
+  }
+}
+
+export const SetUsersProfile = (profile) => {
+  return { type:SET_USER_PROFILE, profile: profile }
+}
+export const SetStatus = (status) => {
+  return { type:SET_STATUS, status: status }
+}
+// export const UpdateStatus = (status) => {
+//   return { type:UPDATE_STATUS, status: status }
+// }
+
+export const GetUserStatus = (id) => async (dispatch)=> {
+  let response = await GetStatus(id)
+      dispatch(SetStatus(response.data))
+}
+export const UpdateUserStatus = (status) =>(dispatch)=> {
+  UpdateStatus(status).then(response=>{
+    if(response.data.resultCode===0){
+      dispatch(SetStatus(status))
+    }
+  });
+}
+export const GetUsersProfile = (id) =>(dispatch)=> {
+  GetProfile(id).then(response=>{
+      dispatch(SetUsersProfile(response.data))
+  });
+}
+
+
+
+// не юзаная ((((
+export const SetUsersId = (id) => {
+  return { type:SET_USER_ID, id: id }
+}
+//
+
+export default profileReducer;
