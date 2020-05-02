@@ -3,7 +3,7 @@ import './App.css';
 import HeaderContainer from './components/header/Header-Container'
 import Nav from './components/Nav/Nav'
 import UsersContainer from './components/users/Users-Container'
-import {BrowserRouter, Route} from 'react-router-dom'
+import {HashRouter, Route} from 'react-router-dom'
 import Login from './components/login/login'
 import {InitializeApp} from './redux/app-reducer'
 import {connect} from 'react-redux';
@@ -25,7 +25,7 @@ class App extends React.Component {
       return <Preloader/>
     }
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className='app-wrapper'>
           <HeaderContainer/>
           <Nav/>
@@ -42,7 +42,7 @@ class App extends React.Component {
             render={ () => <Login/>}
           />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
