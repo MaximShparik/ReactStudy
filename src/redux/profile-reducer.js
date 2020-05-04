@@ -1,10 +1,11 @@
-import {GetProfile,GetStatus,UpdateStatus,savePhotoApi} from '../api/api'
+import {GetProfile,GetStatus,UpdateStatus,savePhotoApi,SaveProfileApi} from '../api/api'
 
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
 const SET_PHOTO_SUCCESS = 'SET-PHOTO-SUCCESS'
+const SET_USER_PROFILE_INFO = 'SET-USER-PROFILE-INFO'
 // const UPDATE_STATUS ='UPDATE-STATUS'
 //
 const SET_USER_ID = 'SET-USER-ID'
@@ -46,6 +47,15 @@ const profileReducer=(state=initialState,action)=> {
         ...state,
         status: action.status
       }
+    case SET_USER_PROFILE_INFO:
+      return {
+        ...state,
+        profile: {...state.profile,
+          aboutMe:action.profile.aboutMe,
+          lookingForAJob:action.profile.lookingForAJob,
+          lookingForAJobDescription:action.profile.lookingForAJobDescription,
+          fullName:action.profile.fullName,}
+      }
     // case UPDATE_STATUS:
     //   return {
     //     ...state,
@@ -85,6 +95,9 @@ export const SetStatus = (status) => {
 export const SetPhotoSuccess = (photos) => {
   return { type:SET_PHOTO_SUCCESS, photos: photos }
 }
+export const SetUsersProfileInfo = (profile) => {
+  return { type:SET_USER_PROFILE_INFO, profile: profile }
+}
 // export const UpdateStatus = (status) => {
 //   return { type:UPDATE_STATUS, status: status }
 // }
@@ -111,6 +124,15 @@ export const savePhoto = (file) =>(dispatch)=> {
 export const GetUsersProfile = (id) =>(dispatch)=> {
   GetProfile(id).then(response=>{
       dispatch(SetUsersProfile(response.data))
+  });
+}
+
+export const SaveProfile = (profile) => (dispatch) => {
+  SaveProfileApi(profile).then(response=>{
+
+    if(response.data.resultCode===0){
+       dispatch(SetUsersProfileInfo(profile))
+    }
   });
 }
 
