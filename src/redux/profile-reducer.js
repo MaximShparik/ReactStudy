@@ -1,9 +1,10 @@
-import {GetProfile,GetStatus,UpdateStatus} from '../api/api'
+import {GetProfile,GetStatus,UpdateStatus,savePhotoApi} from '../api/api'
 
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
+const SET_PHOTO_SUCCESS = 'SET-PHOTO-SUCCESS'
 // const UPDATE_STATUS ='UPDATE-STATUS'
 //
 const SET_USER_ID = 'SET-USER-ID'
@@ -56,6 +57,11 @@ const profileReducer=(state=initialState,action)=> {
         ...state,
         id: action.id
       }
+    case SET_PHOTO_SUCCESS:
+      return {
+        ...state,
+        profile: {...state.profile, photos:action.photos}
+      }
       // debugger
     //
     default:
@@ -76,6 +82,9 @@ export const SetUsersProfile = (profile) => {
 export const SetStatus = (status) => {
   return { type:SET_STATUS, status: status }
 }
+export const SetPhotoSuccess = (photos) => {
+  return { type:SET_PHOTO_SUCCESS, photos: photos }
+}
 // export const UpdateStatus = (status) => {
 //   return { type:UPDATE_STATUS, status: status }
 // }
@@ -88,6 +97,14 @@ export const UpdateUserStatus = (status) =>(dispatch)=> {
   UpdateStatus(status).then(response=>{
     if(response.data.resultCode===0){
       dispatch(SetStatus(status))
+    }
+  });
+}
+
+export const savePhoto = (file) =>(dispatch)=> {
+  savePhotoApi(file).then(response=>{
+    if(response.data.resultCode===0){
+      dispatch(SetPhotoSuccess(response.data.data.photos))
     }
   });
 }
