@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import './App.css';
 import HeaderContainer from './components/header/Header-Container'
 import Nav from './components/Nav/Nav'
