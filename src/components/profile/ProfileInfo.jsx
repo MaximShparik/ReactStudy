@@ -3,6 +3,7 @@ import '../.././App.css';
 import Preloader from '../common/preloader/Preloader'
 import ProfileStatusHook from './ProfileStatusHook'
 import Ava from '../../img/ava.jpg'
+import ProfileInfoDataForm from './ProfileInfoDataForm'
 
 const ProfileInfo = (props) => {
 
@@ -32,6 +33,11 @@ const ProfileInfo = (props) => {
       props.savePhoto(e.target.files[0])
   }
 
+  const onSubmit=(formData)=>{
+    props.SaveProfile(formData)
+    // console.log(formData)
+  }
+
   return (
     <div>
       <div className='content__bg'></div>
@@ -41,7 +47,7 @@ const ProfileInfo = (props) => {
         <ProfileStatusHook status={props.status}
           UpdateUserStatus={props.UpdateUserStatus}/>
         {editMode
-          ?<ProfileInfoDataForm profile={props.profile}/>
+          ?<ProfileInfoDataForm profile={props.profile} onSubmit={onSubmit}/>
           :<ProfileInfoData
             profile={props.profile}
             isOwner={props.isOwner}
@@ -69,15 +75,11 @@ const ProfileInfoData =(props)=>{
   )
 }
 
-const ProfileInfoDataForm =(props)=>{
-  return(
-    <div className='content__profile-info'>
-      form
-    </div>
-  )
-}
 
-const Contacts = ({contactTitle, contactValue}) => {
+// 24 минута 97 выпуск
+// написали на кнопке сейф и я устал
+
+export const Contacts = ({contactTitle, contactValue}) => {
 
   return(
     <div>
