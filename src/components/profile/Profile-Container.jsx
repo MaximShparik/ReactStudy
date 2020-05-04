@@ -19,7 +19,7 @@ class ProfileContainer extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(this.props.match.params.userId!=prevProps.match.params.userId){
+    if(this.props.match.params.userId!==prevProps.match.params.userId){
       let id = this.props.match.params.userId
       if (!id){id=this.props.authorisedId}
       this.props.GetUsersProfile(id)
