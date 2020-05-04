@@ -53,3 +53,13 @@ export const Login =(email, password, rememberMe)=>{
 export const Logout =()=>{
   return instance.delete(`auth/login`)
 }
+
+export const savePhotoApi=(photoFile)=>{
+  const formData=new FormData()
+  formData.append('image', photoFile)
+  return instance.put(`profile/photo`,formData, {
+    headers:{
+      'Content-Type':'multipart/form-data'
+    }
+  })
+}
