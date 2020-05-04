@@ -63,3 +63,6 @@ export const savePhotoApi=(photoFile)=>{
     }
   })
 }
+export const SaveProfileApi =(profile)=>{
+  return instance.put(`profile`,profile)
+}
