@@ -8,6 +8,7 @@ const Profile = (props) => {
   return (
     <content className='content'>
       <ProfileInfo profile={props.profile}
+        profileUpdateStatus={props.profileUpdateStatus}
         status={props.status}
         isOwner={props.isOwner}
         UpdateUserStatus={props.UpdateUserStatus}
