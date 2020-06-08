@@ -14,6 +14,11 @@ export const GetUsers =(currentPage,pageSize)=>{
     .then(response=>response.data)
 }
 
+export const GetFriends =()=>{
+  return instance.get(`users?count=100`)
+    .then(response=>response.data)
+}
+
 export const UnFollowUser =(id)=>{
   return instance.delete(`follow/${id}`)
     .then(response=>response.data)
@@ -42,11 +47,12 @@ export const UpdateStatus =(status)=>{
   })
 }
 
-export const Login =(email, password, rememberMe)=>{
+export const Login =(email, password, rememberMe, captcha=null)=>{
   return instance.post(`auth/login`,{
     email:email,
     password:password,
-    rememberMe:false
+    rememberMe:false,
+    captcha:captcha
   })
 }
 
@@ -65,4 +71,8 @@ export const savePhotoApi=(photoFile)=>{
 }
 export const SaveProfileApi =(profile)=>{
   return instance.put(`profile`,profile)
+}
+
+export const SecurityApi =()=>{
+  return instance.get(`security/get-captcha-url`)
 }
