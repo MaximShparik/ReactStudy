@@ -15,7 +15,7 @@ const ProfileStatusHook =(props)=> {
   // useEffect этот хук запускается когда компонента уже вмонтирована
   // и он зависит от того что указанно вторым элементом
   // это нужно чтобы отрисовка не сбоила
-  
+
 
   const activateEditMode=()=>{
     setEditMode(true)
@@ -42,7 +42,9 @@ const ProfileStatusHook =(props)=> {
             <input onChange={onStatusChange}
               onBlur={deactivateEditMode}
               autoFocus={true}
-              value={status}></input>
+              value={status}
+              maxlength="30">
+              </input>
           </div>
         }
       </div>
