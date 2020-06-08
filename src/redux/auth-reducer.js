@@ -1,14 +1,17 @@
-import {Auth,Login,Logout} from '../api/api'
+import {Auth,Login,Logout,SecurityApi} from '../api/api'
 import {stopSubmit} from 'redux-form'
 
 
 const SET_USER_DATA = 'SET-USER-DATA'
+const GET_CAPTCHA_URL = 'GET-CAPTCHA-URL'
+
 
 let initialState = {
   id: null,
   login: null,
   email: null,
-  isAuth: false
+  isAuth: false,
+  captchaUrl: null
 }
 
 
@@ -22,6 +25,11 @@ const authReducer=(state=initialState,action)=> {
       // данные пришедшие из action с сервера
       //  перезатрут данные из state
       }
+    case GET_CAPTCHA_URL:
+      return{
+        ...state,
+        ...action.payload
+      }
     default:
       return state;
   }
@@ -31,6 +39,12 @@ export const SetUserData = (data) => {
   return {
     type: SET_USER_DATA,
     data: data
+  }
+}
+export const SetCaptcha = (captchaUrl) => {
+  return {
+    type: GET_CAPTCHA_URL,
+    payload: {captchaUrl}
   }
 }
 
@@ -44,10 +58,12 @@ export const GetUserData = () => async (dispatch) => {
 // можно then
 // так-то пофиг, но как варик
 
-export const LoginHOC = (email, password, rememberMe) => (dispatch) => {
-  Login(email, password, rememberMe).then(response=>{
+export const LoginHOC = (email, password, rememberMe, captcha) => (dispatch) => {
+  Login(email, password, rememberMe, captcha).then(response=>{
         if(response.data.resultCode ===0){
           dispatch(GetUserData())
+        } else if (response.data.resultCode ===10){
+          dispatch(GetCaptchaURL())
         } else {
           let message = response.data.messages.length>0 ? response.data.messages[0] :'Something is wrong'
           let action = stopSubmit('login',{_error:message})
@@ -59,6 +75,13 @@ export const LoginHOC = (email, password, rememberMe) => (dispatch) => {
 // которая помогает обробатывать ошибки
 // должны передать в него название формы
 // которую должны остановить
+
+export const GetCaptchaURL = () => (dispatch) => {
+  SecurityApi().then(response=>{
+    const captchaUrl = response.data.url
+    dispatch(SetCaptcha(captchaUrl))
+  });
+}
 
 
 export const LogoutHOC = () => (dispatch) => {
