@@ -10,6 +10,14 @@ import {Redirect} from 'react-router-dom'
 const LoginForm = (props) => {
   return (
       <form onSubmit={props.handleSubmit}>
+
+      {props.captchaUrl && <img src={props.captchaUrl}/>}
+      {props.captchaUrl && <Field placeholder=''
+                            name='captcha'
+                            component={Input}
+                            validate={[requiredField]}
+                            />}
+
         <div>
           <Field placeholder='Email'
             name='email'
@@ -54,7 +62,7 @@ const ReduxLoginForm = reduxForm({
 const Login =(props)=>{
 
   const onSubmit=(formData)=>{
-    props.LoginHOC(formData.email,formData.password,formData.rememberMe)
+    props.LoginHOC(formData.email,formData.password,formData.rememberMe,formData.captcha)
   }
 
   if (props.isAuth) {
@@ -64,13 +72,14 @@ const Login =(props)=>{
   return(
     <div>
       <h1>LogIn</h1>
-      <ReduxLoginForm onSubmit={onSubmit}/>
+      <ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
     </div>
   )
 }
 
 const mapStateToProps=(state)=>({
-  isAuth: state.Auth.isAuth
+  isAuth: state.Auth.isAuth,
+  captchaUrl: state.Auth.captchaUrl
 })
 
 export default connect(mapStateToProps,{LoginHOC})(Login)
