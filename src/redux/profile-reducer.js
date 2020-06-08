@@ -1,5 +1,5 @@
 import {GetProfile,GetStatus,UpdateStatus,savePhotoApi,SaveProfileApi} from '../api/api'
-
+import {stopSubmit} from 'redux-form'
 
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -20,6 +20,7 @@ let initialState = {
     {id:6, message:'Tom'}
   ],
   profile: null,
+  profileUpdateStatus: null,
   status: '',
   // id: 2
 };
@@ -127,15 +128,22 @@ export const GetUsersProfile = (id) =>(dispatch)=> {
   });
 }
 
-export const SaveProfile = (profile) => (dispatch) => {
-  SaveProfileApi(profile).then(response=>{
 
+
+export const SaveProfile = (profile) => (dispatch,getState) => {
+  const id = getState().Auth.id
+  const profileUpdateStatus = getState().Profile.profileUpdateStatus
+  SaveProfileApi(profile).then(response=>{
     if(response.data.resultCode===0){
-       dispatch(SetUsersProfileInfo(profile))
+       dispatch(GetUsersProfile(id))
+       // profileUpdateStatus = true
+    } else {
+      let action = stopSubmit('info',{_error:response.data.messages[0]})
+      dispatch(action)
+      // profileUpdateStatus = false
     }
   });
 }
-
 
 
 // не юзаная ((((
