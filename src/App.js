@@ -1,4 +1,5 @@
 import React from 'react';
+import {Switch} from 'react-router-dom'
 import './App.css';
 import HeaderContainer from './components/header/Header-Container'
 import Nav from './components/Nav/Nav'
@@ -9,14 +10,23 @@ import {InitializeApp} from './redux/app-reducer'
 import {connect} from 'react-redux';
 import Preloader from './components/common/preloader/Preloader'
 import SuspenseHOC from './hoc/WithSuspense'
+import FriendsContainer from './components/friends/Friends-Container'
 
 const CurrentDialogContainer = React.lazy(() => import('./components/dialogs/message/CurrentDialog-Container'));
 const ProfileContainer = React.lazy(() => import('./components/profile/Profile-Container'));
 
 class App extends React.Component {
 
+  catchAllErrors =(promiseRejectionEvent)=>{
+    alert(promiseRejectionEvent)
+  }
+
   componentDidMount(){
     this.props.InitializeApp()
+    window.addEventListener('unhandledrejection', this.catchAllErrors)
+  }
+  componentWillUnmount(){
+    window.removeEventListener('unhandledrejection', this.catchAllErrors)
   }
 
   render(){
@@ -29,18 +39,30 @@ class App extends React.Component {
         <div className='app-wrapper'>
           <HeaderContainer/>
           <Nav/>
-          <Route path='/profile/:userId?'
-            render={SuspenseHOC(ProfileContainer)}
-          />
-          <Route path='/dialogs'
-            render={SuspenseHOC(CurrentDialogContainer)}
-          />
-          <Route path='/users'
-            render={ () => <UsersContainer/>}
-          />
-          <Route path='/login'
-            render={ () => <Login/>}
-          />
+          <Switch>
+            <Route exact path='/'
+              render={SuspenseHOC(ProfileContainer)}
+            />
+            <Route path='/profile/:userId?'
+              render={SuspenseHOC(ProfileContainer)}
+            />
+            <Route path='/dialogs'
+              render={SuspenseHOC(CurrentDialogContainer)}
+            />
+            <Route path='/users'
+              render={ () => <UsersContainer/>}
+            />
+            <Route exact path='/login'
+              render={ () => <Login/>}
+            />
+            <Route exact path='/friends'
+              render={ () => <FriendsContainer/>}
+            />
+            <Route path='*'
+              render={ () => <div>404 ))))))))</div>}
+            />
+          </Switch>
+
         </div>
       </HashRouter>
     );
