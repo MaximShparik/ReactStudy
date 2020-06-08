@@ -5,6 +5,7 @@ import ProfileStatusHook from './ProfileStatusHook'
 import Ava from '../../img/ava.jpg'
 import ProfileInfoDataForm from './ProfileInfoDataForm'
 
+
 const ProfileInfo = (props) => {
 
   let [editMode,setEditMode] = useState(false)
@@ -25,42 +26,44 @@ const ProfileInfo = (props) => {
     setEditMode(false)
   }
 
-// если профайл undefined или null
+  // если профайл undefined или null
   if (!props.profile){
     return <Preloader/>
   }
   const onMainPhotoSelected=(e)=>{
-      props.savePhoto(e.target.files[0])
+    props.savePhoto(e.target.files[0])
   }
 
-  const onSubmit=(formData)=>{
+  const onSubmit= (formData)=>{
     props.SaveProfile(formData)
-    // console.log(formData)
+    setEditMode(false)
   }
 
   return (
     <div>
-      <div className='content__bg'></div>
-      <div className='content__profile'>
-        <img src={props.profile.photos.large||Ava} alt="ava" className='content__profile-ava'></img>
-        {props.isOwner&&<input type='file' onChange={onMainPhotoSelected}/>}
-        <ProfileStatusHook status={props.status}
-          UpdateUserStatus={props.UpdateUserStatus}/>
-        {editMode
-          ?<ProfileInfoDataForm profile={props.profile} onSubmit={onSubmit}/>
-          :<ProfileInfoData
-            profile={props.profile}
-            isOwner={props.isOwner}
-            goToEditMode={()=>{activateEditMode()}}
-            />}
+    <div className='content__bg'></div>
+    <div className='content__profile'>
+    <img src={props.profile.photos.large||Ava} alt="ava" className='content__profile-ava'></img>
+    {props.isOwner&&<input type='file' onChange={onMainPhotoSelected}/>}
+    <ProfileStatusHook status={props.status}
+    UpdateUserStatus={props.UpdateUserStatus}/>
+    {editMode
+      ?<ProfileInfoDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
+      :<ProfileInfoData
+      profile={props.profile}
+      isOwner={props.isOwner}
+      goToEditMode={()=>{activateEditMode()}}
+      />}
       </div>
-    </div>
-  )
-}
+      </div>
+    )
+  }
 
-const ProfileInfoData =(props)=>{
-  return(
-    <div className='content__profile-info'>
+
+
+  const ProfileInfoData =(props)=>{
+    return(
+      <div className='content__profile-info'>
       <p className='info-name'>{props.profile.fullName}</p>
       <p>Looking for a job: {props.profile.lookingForAJob?'Yes':'No'}</p>
       { props.profile.lookingForAJob &&
@@ -71,23 +74,22 @@ const ProfileInfoData =(props)=>{
         return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
       })}</p>
       {props.isOwner&&<button onClick={props.goToEditMode}>Edit Info</button>}
-    </div>
-  )
-}
+      </div>
+    )
+  }
 
 
-// 24 минута 97 выпуск
-// написали на кнопке сейф и я устал
+  // 24 минута 97 выпуск
+  // написали на кнопке сейф и я устал
 
-export const Contacts = ({contactTitle, contactValue}) => {
-
-  return(
-    <div>
+  export const Contacts = ({contactTitle, contactValue}) => {
+    return(
+      <div>
       { contactValue &&
         <p>{contactTitle}: {contactValue}</p>
       }
-    </div>
-  )
-}
+      </div>
+    )
+  }
 
-export default ProfileInfo;
+  export default ProfileInfo;
