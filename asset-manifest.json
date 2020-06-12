@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/ReactStudy/static/css/main.3e925a20.chunk.css",
-    "main.js": "/ReactStudy/static/js/main.9cdee154.chunk.js",
-    "main.js.map": "/ReactStudy/static/js/main.9cdee154.chunk.js.map",
-    "runtime-main.js": "/ReactStudy/static/js/runtime-main.d20af7cd.js",
-    "runtime-main.js.map": "/ReactStudy/static/js/runtime-main.d20af7cd.js.map",
+    "main.css": "/ReactStudy/static/css/main.3b8db97d.chunk.css",
+    "main.js": "/ReactStudy/static/js/main.e734be45.chunk.js",
+    "main.js.map": "/ReactStudy/static/js/main.e734be45.chunk.js.map",
+    "runtime-main.js": "/ReactStudy/static/js/runtime-main.22edc943.js",
+    "runtime-main.js.map": "/ReactStudy/static/js/runtime-main.22edc943.js.map",
     "static/js/2.27b2555c.chunk.js": "/ReactStudy/static/js/2.27b2555c.chunk.js",
     "static/js/2.27b2555c.chunk.js.map": "/ReactStudy/static/js/2.27b2555c.chunk.js.map",
-    "static/js/3.ca57208a.chunk.js": "/ReactStudy/static/js/3.ca57208a.chunk.js",
-    "static/js/3.ca57208a.chunk.js.map": "/ReactStudy/static/js/3.ca57208a.chunk.js.map",
-    "static/js/4.a5fbe755.chunk.js": "/ReactStudy/static/js/4.a5fbe755.chunk.js",
-    "static/js/4.a5fbe755.chunk.js.map": "/ReactStudy/static/js/4.a5fbe755.chunk.js.map",
+    "static/js/3.b0ec8d2f.chunk.js": "/ReactStudy/static/js/3.b0ec8d2f.chunk.js",
+    "static/js/3.b0ec8d2f.chunk.js.map": "/ReactStudy/static/js/3.b0ec8d2f.chunk.js.map",
+    "static/js/4.4531ced7.chunk.js": "/ReactStudy/static/js/4.4531ced7.chunk.js",
+    "static/js/4.4531ced7.chunk.js.map": "/ReactStudy/static/js/4.4531ced7.chunk.js.map",
     "index.html": "/ReactStudy/index.html",
-    "precache-manifest.46dfc687012daee00bc0f3eee81d79ce.js": "/ReactStudy/precache-manifest.46dfc687012daee00bc0f3eee81d79ce.js",
+    "precache-manifest.3c9e413fad4248632608161d42f7b354.js": "/ReactStudy/precache-manifest.3c9e413fad4248632608161d42f7b354.js",
     "service-worker.js": "/ReactStudy/service-worker.js",
-    "static/css/main.3e925a20.chunk.css.map": "/ReactStudy/static/css/main.3e925a20.chunk.css.map",
+    "static/css/main.3b8db97d.chunk.css.map": "/ReactStudy/static/css/main.3b8db97d.chunk.css.map",
     "static/js/2.27b2555c.chunk.js.LICENSE.txt": "/ReactStudy/static/js/2.27b2555c.chunk.js.LICENSE.txt",
-    "static/media/ava.jpg": "/ReactStudy/static/media/ava.bbb874fe.jpg",
     "static/media/App.css": "/ReactStudy/static/media/bg.4fafd66e.jpg",
+    "static/media/ava.jpg": "/ReactStudy/static/media/ava.bbb874fe.jpg",
     "static/media/logo.png": "/ReactStudy/static/media/logo.776b9bd2.png",
     "static/media/preloader.gif": "/ReactStudy/static/media/preloader.07f42c61.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.d20af7cd.js",
+    "static/js/runtime-main.22edc943.js",
     "static/js/2.27b2555c.chunk.js",
-    "static/css/main.3e925a20.chunk.css",
-    "static/js/main.9cdee154.chunk.js"
+    "static/css/main.3b8db97d.chunk.css",
+    "static/js/main.e734be45.chunk.js"
   ]
 }

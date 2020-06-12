@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f7b318d179d1579530761252370f34f7",
+    "revision": "5142d4d1163c0a4599bdd3066cf683f7",
     "url": "/ReactStudy/index.html"
   },
   {
-    "revision": "10df227682e584a084ae",
-    "url": "/ReactStudy/static/css/main.3e925a20.chunk.css"
+    "revision": "e6311a206cf5b10a19ef",
+    "url": "/ReactStudy/static/css/main.3b8db97d.chunk.css"
   },
   {
     "revision": "54195747b244c477bd71",
@@ -16,20 +16,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ReactStudy/static/js/2.27b2555c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2fe123f2d8f7975418e2",
-    "url": "/ReactStudy/static/js/3.ca57208a.chunk.js"
+    "revision": "243307646279630266e5",
+    "url": "/ReactStudy/static/js/3.b0ec8d2f.chunk.js"
   },
   {
-    "revision": "c87d62f1ad70a09aced0",
-    "url": "/ReactStudy/static/js/4.a5fbe755.chunk.js"
+    "revision": "9ef0140e54575751e2f9",
+    "url": "/ReactStudy/static/js/4.4531ced7.chunk.js"
   },
   {
-    "revision": "10df227682e584a084ae",
-    "url": "/ReactStudy/static/js/main.9cdee154.chunk.js"
+    "revision": "e6311a206cf5b10a19ef",
+    "url": "/ReactStudy/static/js/main.e734be45.chunk.js"
   },
   {
-    "revision": "148db5885bf1877babbc",
-    "url": "/ReactStudy/static/js/runtime-main.d20af7cd.js"
+    "revision": "41704269cb462d7eface",
+    "url": "/ReactStudy/static/js/runtime-main.22edc943.js"
+  },
+  {
+    "revision": "d741169356f07fbe7ffb4588f6e3676e",
+    "url": "/ReactStudy/static/media/Photo-add.d7411693.svg"
   },
   {
     "revision": "bbb874fe811e4f2b806f45e0987919c7",
