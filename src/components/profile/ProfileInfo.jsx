@@ -41,12 +41,14 @@ const ProfileInfo = (props) => {
 
   return (
     <div>
-    <div className='content__bg'></div>
-    <div className='content__profile'>
-    <img src={props.profile.photos.large||Ava} alt="ava" className='content__profile-ava'></img>
-    {props.isOwner&&<input type='file' onChange={onMainPhotoSelected}/>}
-    <ProfileStatusHook status={props.status}
-    UpdateUserStatus={props.UpdateUserStatus}/>
+      <div className='content__bg'></div>
+      <div className='content__profile'>
+      <div className='content__profile-main'>
+        <img src={props.profile.photos.large||Ava} alt="ava" className='content__profile-ava'></img>
+        {props.isOwner&&<input type='file' onChange={onMainPhotoSelected}/>}
+        <ProfileStatusHook status={props.status}
+        UpdateUserStatus={props.UpdateUserStatus}/>
+      </div>
     {editMode
       ?<ProfileInfoDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
       :<ProfileInfoData
@@ -69,8 +71,10 @@ const ProfileInfo = (props) => {
       { props.profile.lookingForAJob &&
         <p>My professional skills: {props.profile.lookingForAJobDescription}</p>
       }
-      <p>About me: {props.profile.aboutMe}</p>
-      <p>Contacts: {Object.keys(props.profile.contacts).map(key=>{
+      { props.profile.aboutMe &&
+        <p>About me: {props.profile.aboutMe}</p>
+      }
+      <p>{Object.keys(props.profile.contacts).map(key=>{
         return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
       })}</p>
       {props.isOwner&&<button onClick={props.goToEditMode}>Edit Info</button>}
@@ -84,7 +88,7 @@ const ProfileInfo = (props) => {
 
   export const Contacts = ({contactTitle, contactValue}) => {
     return(
-      <div>
+      <div className='link'>
       { contactValue &&
         <p>{contactTitle}: {contactValue}</p>
       }
