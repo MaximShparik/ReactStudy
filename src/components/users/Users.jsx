@@ -18,6 +18,7 @@ let Users = (props) =>{
           onClick={()=>{props.onPageChanged(el)}}>{el} </span>
         })}
       </div>
+      <div className='users__flex'>
       {props.dataUsers.map(elem=><div className='user__item' key={elem.id}>
       <div className='user__item-face'>
         <NavLink to={'/profile/'+elem.id}>
@@ -34,11 +35,9 @@ let Users = (props) =>{
       </div>
         <div className='user__info'>
           <div className='user__info-name'>{elem.name}</div>
-          <div className='user__info-status'>Прикольненько</div>
-          <div className='user__info-from'>Msk<br></br>RU</div>
         </div>
       </div>)}
-      <button className='users-more'>Show more</button>
+      </div>
     </div>
   )
 }
