@@ -32,10 +32,11 @@ const LoginForm = (props) => {
             validate={[requiredField]}
           />
         </div>
-        <div>
+        <div className='remember'>
           <Field component={Input}
             name='rememberMe'
             type='checkbox'
+
             // validate={[requiredField]}
           /> remember me
         </div>
@@ -70,7 +71,7 @@ const Login =(props)=>{
   }
 
   return(
-    <div>
+    <div className='login'>
       <h1>LogIn</h1>
       <ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
     </div>
