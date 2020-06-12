@@ -6,13 +6,14 @@ import {requiredField,maxLenghtCreator} from '../../utilits/validators/validator
 import {Textarea} from '../common/formsControler/FormsControler'
 
 const Posts = (props) => {
+  // debugger
 
   let AddPost = (values) => {
     props.AddPost(values.MyPostText);
   }
 
   let dataRenderPostOld =
-    props.dataPostOld.map( el => <PostOld message={el.message} id={el.id}/>)
+    props.dataPostOld.map( el => <PostOld photo={props.photo} message={el.message} id={el.id}/>)
 
   return (
     <div className='content__posts post'>
