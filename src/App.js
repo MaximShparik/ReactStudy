@@ -59,7 +59,7 @@ class App extends React.Component {
               render={ () => <FriendsContainer/>}
             />
             <Route path='*'
-              render={ () => <div>404 ))))))))</div>}
+              render={ () => <div id='error'>404 ))))))))</div>}
             />
           </Switch>
 
