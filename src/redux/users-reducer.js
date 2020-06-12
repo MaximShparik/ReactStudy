@@ -10,7 +10,7 @@ const FOLLOWING_IN_PROCCES = 'FOLLOWING-IN-PROCCES'
 
 let initialState = {
   dataUsers:[],
-  pageSize: 10,
+  pageSize: 96,
   totalUsersCount:0,
   currentPage: 1,
   isFetching: false,
