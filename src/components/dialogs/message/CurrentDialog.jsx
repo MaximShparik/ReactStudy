@@ -7,7 +7,7 @@ import {requiredField,maxLenghtCreator} from '../../../utilits/validators/valida
 import {Textarea} from '../../common/formsControler/FormsControler'
 
 const CurrentDialog = (props) => {
-
+// debugger
   let dataRenderMessage =
     props.dataMessage.map( el => <Message text={el.text} from={el.from} class={el.class} avasrc={el.avasrc}/>)
   let dataRenderDialogsName =
@@ -30,15 +30,12 @@ const CurrentDialog = (props) => {
   );
 }
 
-const maxLenght20 = maxLenghtCreator(20)
-
 const MessageForm = (props) => {
 
   return (
     <form className='dialogs__message' onSubmit={props.handleSubmit}>
       <Field
         component={Textarea}
-        validate={[requiredField,maxLenght20]}
         name='MyMessageText'
         className='dialogs__message-area'
         rows="2"
