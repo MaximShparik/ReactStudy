@@ -14,7 +14,6 @@ let Friends = (props) =>{
 
   return(
     <div className='friends'>
-    friends number: {props.dataUsers.length}
     {props.dataUsers.map(el=>{
       if (el.followed == true){
         return(
