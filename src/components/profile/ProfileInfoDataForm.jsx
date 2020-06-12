@@ -7,9 +7,9 @@ import {requiredField} from '../../utilits/validators/validators'
 const ProfileInfoDataForm =(props)=>{
 
   return(
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSubmit} className='about-me'>
 
-      <p className='info-name'>
+      <p className='info-name-form'>Назови себя:
         <Field placeholder='Name'
           name='fullName'
           component={Input}
@@ -17,26 +17,26 @@ const ProfileInfoDataForm =(props)=>{
         />
       </p>
 
-      <p>Looking for a job:
+      <p className='looking'>Ищу ли я работу:
         <Field component={Input}
           name='lookingForAJob'
           type='checkbox'/>
       </p>
 
-      <p>My professional skills:
+      <p>Твои професионнальный навыки:
         <Field placeholder='Your skills'
           name='lookingForAJobDescription'
           component={Textarea}
         />
       </p>
 
-      <p>About me:
+      <p>Расскажи о себе:
         <Field placeholder='What do you think about yourself'
           name='aboutMe'
           component={Textarea}
         />
       </p>
-      <p>Contacts: {Object.keys(props.profile.contacts).map(key=>{
+      <p className='contacts'>{Object.keys(props.profile.contacts).map(key=>{
         return <div key={key} className='contact__item'>
         <p>{key}:<Field component={Input}
           name={'contacts.'+key}/></p>
