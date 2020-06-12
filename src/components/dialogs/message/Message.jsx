@@ -3,7 +3,7 @@ import '../../.././App.css';
 import Ava from '../../../img/ava.jpg'
 
 const Message = (props) => {
-
+// debugger
   return (
     <div className={'message '+ props.class}>
       <div className='message__person'>
@@ -11,7 +11,7 @@ const Message = (props) => {
         <span className='message__name'>{props.from}</span>
       </div>
       <div className='message__area'>
-        <p className='message__text'>{props.text}</p>
+        {props.text}
       </div>
     </div>
   );
