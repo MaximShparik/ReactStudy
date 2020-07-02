@@ -76,3 +76,15 @@ export const SaveProfileApi =(profile)=>{
 export const SecurityApi =()=>{
   return instance.get(`security/get-captcha-url`)
 }
+
+export const StartChattingApi =(userId)=>{
+  return instance.put(`dialogs/{userId}`)
+}
+
+export const GetMessagesApi =(userId)=>{
+  return instance.get(`dialogs/{userId}/messages`)
+}
+
+export const SendMessagegApi =(userId)=>{
+  return instance.post(`dialogs/{userId}/messages`)
+}
