@@ -78,13 +78,15 @@ export const SecurityApi =()=>{
 }
 
 export const StartChattingApi =(userId)=>{
-  return instance.put(`dialogs/{userId}`)
+  return instance.put(`dialogs/${userId}`)
 }
 
 export const GetMessagesApi =(userId)=>{
-  return instance.get(`dialogs/{userId}/messages`)
+  return instance.get(`dialogs/${userId}/messages`)
 }
 
-export const SendMessagegApi =(userId)=>{
-  return instance.post(`dialogs/{userId}/messages`)
+export const SendMessagegApi =(userId,body)=>{
+  return instance.post(`dialogs/${userId}/messages`,{
+    body:body
+  })
 }
