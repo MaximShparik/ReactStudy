@@ -5,13 +5,14 @@ import Message from './Message';
 import {reduxForm,Field} from 'redux-form'
 import {requiredField,maxLenghtCreator} from '../../../utilits/validators/validators'
 import {Textarea} from '../../common/formsControler/FormsControler'
+import {SendMessagegApi} from '../../../api/api'
 
 const CurrentDialog = (props) => {
 // debugger
   let dataRenderMessage =
-    props.dataMessage.map( el => <Message text={el.text} from={el.from} class={el.class} avasrc={el.avasrc}/>)
+    props.dataMessage.map( el => <Message text={el.body} from={el.senderId} avasrc={el.avasrc}/>)
   let dataRenderDialogsName =
-    props.dataDialogsName.map( el => <DialogsName name={el.name} id={el.id}/>)
+    props.dataDialogsName.map( el => <DialogsName GetMessages={props.GetMessages} name={el.name} id={el.id}/>)
 
   let AddNewMessage = (values) => {
     props.SendMessage(values.MyMessageText);
@@ -31,6 +32,12 @@ const CurrentDialog = (props) => {
 }
 
 const MessageForm = (props) => {
+  // debugger
+  // const send=()=>{
+  //   let body = document.getElementByClass("dialogs__message-area").value;
+  //   SendMessagegApi(8775,body);
+  //   alert(body)
+  // }
 
   return (
     <form className='dialogs__message' onSubmit={props.handleSubmit}>
@@ -42,7 +49,10 @@ const MessageForm = (props) => {
         placeholder="Your message..."
         >
       </Field>
-      <button className='dialogs__message-button'>
+      <button
+        className='dialogs__message-button'
+        // onClick={send}
+        >
         Send
       </button>
     </form>
