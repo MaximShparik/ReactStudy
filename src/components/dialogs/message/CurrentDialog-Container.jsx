@@ -1,6 +1,6 @@
 import React from 'react';
 import CurrentDialog from './CurrentDialog'
-import {SendMessage,GetMessages,GetMessagesThunkCreator} from '../../.././redux/message-reducer';
+import {AddMessage,GetMessagesThunkCreator,GetMessagesInitial,SendMessageThunkCreator} from '../../.././redux/message-reducer';
 import {connect} from 'react-redux';
 import {compose} from 'redux'
 import {WithAuthRedirect} from '../../../hoc/WithAuthRedirect'
@@ -9,11 +9,13 @@ import Preloader from '../../common/preloader/Preloader'
 class CurrentDialogContainer extends React.Component{
 
   componentDidMount() {
-    this.props.GetMessagesThunkCreator(8775)
+    this.props.GetMessagesInitial(7099)
   }
-  // onPageChanged=(pageNumber)=>{
-  //   this.props.GetUsersThunkCreator(pageNumber,this.props.pageSize)
-  // }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(this.props.dataMessage!==prevProps.dataMessage){
+      // this.props.GetMessagesThunkCreator(8775)
+    }
+  }
 
   render() {
     // debugger
@@ -26,7 +28,9 @@ class CurrentDialogContainer extends React.Component{
         dataMessage={this.props.dataMessage}
         dataDialogsName={this.props.dataDialogsName}
         SendMessage={this.props.SendMessage}
-        GetMessages={this.props.GetMessages}
+        SendMessageThunkCreator={this.props.SendMessageThunkCreator}
+        isSending={this.props.isSending}
+        // GetMessages={this.props.GetMessages}
       />
     </>
   }
@@ -38,6 +42,7 @@ let mapStateToProps =(state)=>{
     dataMessage: state.Message.dataMessage,
     dataDialogsName:state.Message.dataDialogsName,
     isFetching:state.Message.isFetching,
+    isSending:state.Message.isSending,
     userId:7099,
   }
 }
@@ -52,6 +57,6 @@ let mapStateToProps =(state)=>{
 
 export default compose(
   connect(mapStateToProps,
-    {SendMessage,GetMessages,GetMessagesThunkCreator}),
+    {AddMessage,GetMessagesThunkCreator,GetMessagesInitial,SendMessageThunkCreator}),
   WithAuthRedirect
 )(CurrentDialogContainer)
