@@ -15,7 +15,8 @@ const CurrentDialog = (props) => {
     props.dataDialogsName.map( el => <DialogsName GetMessages={props.GetMessages} name={el.name} id={el.id}/>)
 
   let AddNewMessage = (values) => {
-    props.SendMessage(values.MyMessageText);
+    props.SendMessageThunkCreator(7099,values.MyMessageText);
+    values = ''
   }
 
   return (
@@ -26,7 +27,7 @@ const CurrentDialog = (props) => {
       <div className='dialogs__list'>
         {dataRenderDialogsName}
       </div>
-      <ReduxMessageForm onSubmit={AddNewMessage}/>
+      <ReduxMessageForm onSubmit={AddNewMessage} isSending={props.isSending}/>
     </div>
   );
 }
@@ -49,12 +50,16 @@ const MessageForm = (props) => {
         placeholder="Your message..."
         >
       </Field>
-      <button
-        className='dialogs__message-button'
-        // onClick={send}
-        >
-        Send
-      </button>
+      {props.isSending?
+        <button className='dialogs__message-button' disabled>
+          Send
+        </button>
+        :<button
+          className='dialogs__message-button'
+          >
+          Send
+        </button>
+      }
     </form>
   )
 }
