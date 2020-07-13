@@ -85,7 +85,7 @@ export const GetMessagesApi =(userId)=>{
   return instance.get(`dialogs/${userId}/messages`)
 }
 
-export const SendMessagegApi =(userId,body)=>{
+export const SendMessageApi =(userId,body)=>{
   return instance.post(`dialogs/${userId}/messages`,{
     body:body
   })
