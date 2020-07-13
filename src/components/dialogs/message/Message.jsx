@@ -7,7 +7,7 @@ const Message = (props) => {
 
 
   return (
-    <div className={props.from==7099 ? 'message me' : 'message friend'}>
+    <div className={props.from==8775 ? 'message me' : 'message no_me'}>
       <div className='message__person'>
         <img src={Ava} alt="ava" className='message__ava'/>
         <span className='message__name'>{props.from}</span>
