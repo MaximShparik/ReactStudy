@@ -4,8 +4,10 @@ import Ava from '../../../img/ava.jpg'
 
 const Message = (props) => {
 // debugger
+
+
   return (
-    <div className={'message '+ props.class}>
+    <div className={props.from==7099 ? 'message me' : 'message friend'}>
       <div className='message__person'>
         <img src={Ava} alt="ava" className='message__ava'/>
         <span className='message__name'>{props.from}</span>
