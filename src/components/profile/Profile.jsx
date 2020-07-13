@@ -4,7 +4,7 @@ import '../.././App.css';
 import PostsContainer from './Posts-Container';
 
 const Profile = (props) => {
-
+  // debugger
   return (
     <div className='content'>
       <ProfileInfo profile={props.profile}
