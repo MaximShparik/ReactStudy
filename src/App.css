@@ -392,6 +392,9 @@ p.looking div{
   max-width: 100%;
   /* vertical-align:bottom; */
 }
+.message:first-child{
+  margin-top: auto;
+}
 .dialogs__list{
   grid-area: list;
   padding: 10px;
